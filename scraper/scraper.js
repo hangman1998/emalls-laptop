@@ -33,8 +33,7 @@ const getData = async (page) => {
     "#mainlist > div > div.col-md-4.col-sm-7.col-7 > span.item-title > a";
   const priceSelector =
     "#mainlist > div > div.col-md-2.col-sm-12.col-12.item-price > span:nth-child(1)";
-  const imgSelector =
-    "#mainlist > div > div.col-md-2.col-sm-2.col-4.imgContainer > a > img";
+  const imgSelector = "#mainlist > div > .imgContainer > a > img";
   const $ = cheerio.load(data);
 
   $(priceSelector).each((index, element) => {
@@ -49,6 +48,7 @@ const getData = async (page) => {
   });
   $(imgSelector).each((index, element) => {
     localList[index].imageUrl = $(element).attr("src");
+    localList[index].imageUrlLazy = $(element).attr("data-lazysrc");
   });
   return localList;
 };
@@ -60,7 +60,7 @@ const getPages = async () => {
   }
   let jsonData = JSON.stringify(laptops);
 
-  fs.writeFile("../db.json", jsonData, function (err) {
+  fs.writeFile("db.json", jsonData, function (err) {
     if (err) {
       console.log(err);
     }
