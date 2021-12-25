@@ -55,8 +55,9 @@ const getData = async (page) => {
 
 const getPages = async () => {
   for (let i = 1; i < 20; i++) {
-    console.log("page " + i + " ...");
+    console.log("scraping page " + i + " ...");
     laptops.laptops = laptops.laptops.concat(await getData(i));
+    console.log("#total scraped laptops count: " + laptops.laptops.length);
   }
   for (let i = 0; i < laptops.laptops.length; i++) {
     laptops.laptops[i].index = i;
