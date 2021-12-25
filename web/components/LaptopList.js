@@ -1,14 +1,18 @@
 import React from "react";
 import LaptopCard from "./LaptopCard";
 
-const LaptopList = ({ laptops }) => {
+const LaptopList = ({ laptops, setLaptops }) => {
+  const deleteHandler = (index) => {
+    setLaptops(laptops.filter((x) => x.index != index));
+  };
   return (
-    <div className="flex flex-col justify-center items-center bg-slate-700">
-      <h1 className="text-slate-100 text-4xl text-extrabold underline p-2 mb-2">
-        Laptops List
-      </h1>
-      {laptops.map((laptop, index) => (
-        <LaptopCard index={index} laptop={laptop} />
+    <div className="flex flex-col justify-center items-center ">
+      {laptops.map((laptop) => (
+        <LaptopCard
+          laptop={laptop}
+          key={laptop.index}
+          onDelete={() => deleteHandler(laptop.index)}
+        />
       ))}
     </div>
   );

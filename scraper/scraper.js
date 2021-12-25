@@ -58,6 +58,9 @@ const getPages = async () => {
     console.log("page " + i + " ...");
     laptops.laptops = laptops.laptops.concat(await getData(i));
   }
+  for (let i = 0; i < laptops.laptops.length; i++) {
+    laptops.laptops[i].index = i;
+  }
   let jsonData = JSON.stringify(laptops);
 
   fs.writeFile("db.json", jsonData, function (err) {
