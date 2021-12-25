@@ -6,30 +6,35 @@ const LaptopCard = ({ laptop, onDelete }) => {
         #{" " + (laptop.index + 1)}
       </h1>
 
-      <div className="flex flex-row items-center justify-between mt-4">
-        <img
-          src={
-            laptop.imageUrl.includes("emalls")
-              ? laptop.imageUrl
-              : laptop.imageUrlLazy
-          }
-          width={100}
-          height={100}
-          alt=""
-          className="rounded-lg"
-        />
+      <div className="flex flex-row items-center  justify-left mt-2">
+        <a href={"http://emalls.ir" + laptop.link}>
+          <img
+            src={
+              laptop.imageUrl.includes("emalls")
+                ? laptop.imageUrl
+                : laptop.imageUrlLazy
+            }
+            width={100}
+            height={100}
+            alt=""
+            className="rounded-lg"
+          />
+        </a>
         <a
           className="hover:text-blue-500"
           href={"http://emalls.ir" + laptop.link}
         >
           {laptop.name}
         </a>
-        <div className="text-amber-500 font-bold text-2xl ml-4">
-          {laptop.price}
+        <div className="ml-auto flex-row flex items-center ">
+          <div className="text-amber-500 font-bold text-2xl mr-4">
+            {laptop.price}
+          </div>
+          <i
+            className="oma oma-delete oma-3x cursor-pointer  "
+            onClick={onDelete}
+          ></i>
         </div>
-        <button className="cursor-pointer  bg-rose-700" onClick={onDelete}>
-          <i className="oma oma-delete oma-3x "></i>
-        </button>
       </div>
     </div>
   );

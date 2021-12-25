@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
 
-const LaptopFilter = ({ laptops, setLaptops, data }) => {
+const LaptopFilter = ({ laptops, setLaptops, data, saveChanges }) => {
   const ref = useRef(null);
   return (
     <div className="bg-slate-200 p-4 rounded-lg">
@@ -30,6 +30,12 @@ const LaptopFilter = ({ laptops, setLaptops, data }) => {
         className="rounded-md bg-slate-400 text-slate-50 text-bg font-bold px-2 py-1 ml-4 hover:bg-slate-500"
       >
         reset
+      </button>
+      <button
+        onClick={saveChanges}
+        className="rounded-md bg-orange-400 text-slate-50 text-bg font-bold px-2 py-1 ml-4 hover:bg-orange-500"
+      >
+        save
       </button>
     </div>
   );
