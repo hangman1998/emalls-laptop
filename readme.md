@@ -14,8 +14,9 @@ contains a simple frontend for the scraped content written with next.js
 
 1. `cd scraper`
 2. `npm i`
-3. `npx json-server --port 3001 --watch db.json`
-4. `cd ../web`
-5. `npm i`
-6. `npm run dev`
-7. open `http://localhost:3000` in your browser and enjoy!
+3. `node scraper.js`
+4. `npx json-server --port 3001 --watch db.json`
+5. `cd ../web`
+6. `npm i`
+7. `npm run dev`
+8. open `http://localhost:3000` in your browser and enjoy!
