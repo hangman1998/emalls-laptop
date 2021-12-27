@@ -1,7 +1,7 @@
 import React from "react";
 const LaptopCard = ({ laptop, onDelete }) => {
   return (
-    <div className="flex flex-col bg-white  shadow-lg rounded-lg  p-4 m-2 w-1/2">
+    <div className="flex flex-col bg-white  shadow-lg rounded-lg  p-4 m-2">
       <h1 className="font-bold text-slate-500 text-4xl">
         #{" " + (laptop.index + 1)}
       </h1>
@@ -21,7 +21,7 @@ const LaptopCard = ({ laptop, onDelete }) => {
           />
         </a>
         <a
-          className="hover:text-blue-500"
+          className="hover:text-blue-500 ml-4"
           href={"http://emalls.ir" + laptop.link}
         >
           {laptop.name}
