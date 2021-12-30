@@ -33,7 +33,7 @@ function Index() {
           onClick={() => {
             setScrapeStatus(true);
             axios.get("/api/scrape").then(() => {
-              setScrapeDate(Date.now());
+              setScrapeDate(new Date());
               setScrapeStatus(false);
             });
           }}
