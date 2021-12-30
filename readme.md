@@ -12,8 +12,6 @@ contains a simple frontend for the scraped content written with next.js
 
 ## Instructions
 
-1. `cd scraper`
-2. `npm i`
 3. `node scraper.js`
 4. `npx json-server --port 3001 --watch db.json`
 5. `cd ../web`

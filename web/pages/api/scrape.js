@@ -1,8 +1,7 @@
 const axios = require("axios");
-const fs = require("fs");
 const cheerio = require("cheerio");
-
-let laptops = { laptops: [] };
+import { PrismaClient } from "@prisma/client";
+const prisma = new PrismaClient();
 
 function toEnglishDigits(str) {
   // convert persian digits [۰۱۲۳۴۵۶۷۸۹]
@@ -47,28 +46,22 @@ const getData = async (page) => {
     localList[index].link = $(element).attr("href");
   });
   $(imgSelector).each((index, element) => {
-    localList[index].imageUrl = $(element).attr("src");
-    localList[index].imageUrlLazy = $(element).attr("data-lazysrc");
+    if ($(element).attr("src").includes("emalls")) {
+      localList[index].imageUrl = $(element).attr("src");
+    } else {
+      localList[index].imageUrl = $(element).attr("data-lazysrc");
+    }
   });
   return localList;
 };
 
-const getPages = async () => {
-  for (let i = 1; i < 20; i++) {
-    console.log("scraping page " + i + " ...");
-    laptops.laptops = laptops.laptops.concat(await getData(i));
-    console.log("#total scraped laptops count: " + laptops.laptops.length);
+export default async function handle(req, res) {
+  await prisma.laptop.deleteMany({});
+  for (let i = 1; i < 23; i++) {
+    let data = await getData(i);
+    await prisma.laptop.createMany({ data });
+    console.log("done scraping page " + i);
   }
-  for (let i = 0; i < laptops.laptops.length; i++) {
-    laptops.laptops[i].index = i;
-  }
-  let jsonData = JSON.stringify(laptops);
 
-  fs.writeFile("db.json", jsonData, function (err) {
-    if (err) {
-      console.log(err);
-    }
-  });
-};
-
-getPages();
+  res.json({ done: true });
+}

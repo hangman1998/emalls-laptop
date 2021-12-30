@@ -2,16 +2,16 @@ import React from "react";
 import LaptopCard from "./LaptopCard";
 
 const LaptopList = ({ laptops, setLaptops, page }) => {
-  const deleteHandler = (index) => {
-    setLaptops(laptops.filter((x) => x.index != index));
+  const deleteHandler = (id) => {
+    setLaptops(laptops.filter((x) => x.id != id));
   };
   return (
-    <div className=" grid gap-2 grid-cols-4 mx-4 ">
-      {laptops.slice(16 * (page - 1), 16 * (page)).map((laptop) => (
+    <div className=" grid grid-cols-4 h-3/5 gap-1 m-2">
+      {laptops.slice(16 * (page - 1), 16 * page).map((laptop) => (
         <LaptopCard
           laptop={laptop}
-          key={laptop.index}
-          onDelete={() => deleteHandler(laptop.index)}
+          key={laptop.id}
+          onDelete={() => deleteHandler(laptop.id)}
         />
       ))}
     </div>
