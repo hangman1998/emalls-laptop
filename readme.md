@@ -2,10 +2,6 @@
 
 ## project structure
 
-### scraper folder
-
-contains the `scraper.js` script which will scrape 19 pages of the emalls laptops and store their details in `db.json`
-
 ### web folder
 
 contains a simple frontend for the scraped content written with next.js
