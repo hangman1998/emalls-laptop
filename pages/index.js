@@ -16,7 +16,7 @@ function Index() {
       setData(res.data);
       setLaptops(res.data);
     });
-  }, []);
+  }, [scrapeStatus]);
 
   const saveChanges = async () => {
     setData(laptops);

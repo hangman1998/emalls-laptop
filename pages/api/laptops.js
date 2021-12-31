@@ -7,7 +7,7 @@ export default async function handle(req, res) {
     // console.log(req.body);
     await prisma.laptop.createMany({ data: req.body });
   } else if (req.method === "GET") {
-    let laptops = await prisma.laptop.findMany();
+    let laptops = await prisma.laptop.findMany({ orderBy: { name: "asc" } });
     const regexFilter = (regex) =>
       laptops.filter((x) => !regex.test(x.name.toLowerCase()));
 
